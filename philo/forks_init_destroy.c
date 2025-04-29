@@ -1,47 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_init.c                                      :+:      :+:    :+:   */
+/*   forks_init_destroy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 18:16:06 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:16:07 by ccalabro         ###   ########.fr       */
+/*   Created: 2025/04/29 18:15:07 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_struct.h"
+#include "philo.h"
 
-void	philos_init(t_table *table)
+void	initialize_forks(t_table *t)
 {
 	int	i;
 
 	i = 0;
-	while (i < table->n_phil)
+	t->fork = (pthread_mutex_t *)malloc(t->n_phil * sizeof(pthread_mutex_t));
+	if (t->fork == NULL)
 	{
-		pthread_create(&table->phil[i].thread, NULL, &philo_rout,
-			(void *)&table->phil[i]);
+		printf("ERROR malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	while (i < t->n_phil)
+	{
+		pthread_mutex_init(&t->fork[i], NULL);
 		i++;
 	}
-	pthread_create(&table->monitor_id, NULL, &is_monitoring, (void *)table);
-	i = 0;
-	while (i < table->n_phil)
-	{
-		pthread_join(table->phil[i].thread, NULL);
-		i++;
-	}
-	pthread_join(table->monitor_id, NULL);
 }
 
-void	destroy_philo(t_table *table)
+void	destroy_forks(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->n_phil)
 	{
-		pthread_mutex_destroy(&table->phil[i].is_eating);
+		pthread_mutex_destroy(&table->fork[i]);
 		i++;
 	}
-	free(table->phil);
+	free(table->fork);
 }

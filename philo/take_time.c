@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   take_time.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 18:15:24 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:15:25 by ccalabro         ###   ########.fr       */
+/*   Created: 2025/04/29 18:16:02 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_struct.h"
+#include "philo.h"
 
-int	main(int argc, char **argv)
+size_t	taketime(void)
 {
-	t_table	main;
+	struct timeval	str;
+	size_t			rest;
 
-	if (checks(argc, argv) == 0)
-	{
-		if (atoi(argv[1]) == 1)
-			one_philo();
-		def_struct_table(&main, argc, argv);
-		philos_init(&main);
-		destroy_forks(&main);
-		destroy_philo(&main);
-	}
-	return (0);
+	gettimeofday(&str, NULL);
+	rest = (str.tv_sec * 1000) + (str.tv_usec / 1000);
+	return (rest);
 }

@@ -6,11 +6,11 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:15:19 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_struct.h"
+#include "philo.h"
 
 void	def_struct_table(t_table *table, int argc, char **argv)
 {
