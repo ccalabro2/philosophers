@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/05/02 15:38:03 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:37:55 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	def_struct_table(t_table *table, int argc, char **argv)
 	pthread_mutex_init(&table->dead_checker, NULL);
 	pthread_mutex_init(&table->meal_checker, NULL);
 	pthread_mutex_init(&table->printf, NULL);
-	initialize_forks(table);
+	init_forks(table);
 	def_struct_philo(table);
 }

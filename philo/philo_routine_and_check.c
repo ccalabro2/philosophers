@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:48 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:00:18 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	*philo_rout(void *to_cast)
 		usleep(philos->table->time_for_eat * 1000);
 		pthread_mutex_unlock(&philos->is_eating);
 		pthread_mutex_unlock(philos->right_fork);
-		print_all("RIGHT UNLOCK, FORK DROPPED", philos);
 		pthread_mutex_unlock(philos->left_fork);
-		print_all("LEFT UNLOCK, FORK DROPPED", philos);
 	}
 	return (NULL);
 }
@@ -71,18 +69,18 @@ int	food_checker(t_table *table)
 
 void	check_forks(t_philos *philo)
 {
-	if (philo->id % 3 == 0)
+	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
-		print_all("RIGHT LOCK", philo);
+		print_all("has taken a fork", philo);
 		pthread_mutex_lock(philo->left_fork);
-		print_all("LEFT LOCK", philo);
+		print_all("has taken a fork", philo);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->left_fork);
-		print_all("LEFT LOCK", philo);
+		print_all("has taken a fork", philo);
 		pthread_mutex_lock(philo->right_fork);
-		print_all("RIGHT LOCK", philo);
+		print_all("has taken a fork", philo);
 	}
 }

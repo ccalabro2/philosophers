@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:30 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:46:01 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_it_dead(t_table *table)
 		if (taketime() - table->phil[i].check_time_eat
 			> (size_t)table->time_before_death)
 		{
-			print_all("E' MORTO\n", &table->phil[i]);
+			print_all("É MORTO\n", &table->phil[i]);
 			pthread_mutex_lock(&table->dead_checker);
 			table->is_dead = 1;
 			ret = 1;

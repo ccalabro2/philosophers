@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:54 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:21:26 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/04 16:37:17 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int		checks(int argc, char **argv);
 int		atoi_for_check(const char *str);
 void	one_philo(void);
 void	*philo_rout(void *to_cast);
+void	init_forks(t_table *table);
 void	philos_init(t_table *table);
 void	check_forks(t_philos *philo);
 void	destroy_philo(t_table *table);
 void	destroy_forks(t_table *table);
 void	*is_monitoring(void *to_cast);
 void	def_struct_philo(t_table *table);
-void	initialize_forks(t_table *table);
 void	print_all(char *str, t_philos *phil);
 void	def_struct_table(t_table *main, int argc, char **argv);
 size_t	taketime(void);
