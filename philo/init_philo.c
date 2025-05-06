@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:15:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/05/04 16:37:55 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:17:44 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	def_struct_philo(t_table *table)
 	table->phil = (t_philos *) malloc(table->n_phil * sizeof(t_philos));
 	if (!table->phil)
 	{
-		printf("ERROR malloc failed\n");
+		printf("ERROR: allocation failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while (i < table->n_phil)
@@ -37,24 +37,4 @@ void	def_struct_philo(t_table *table)
 		pthread_mutex_init(&table->phil[i].is_eating, NULL);
 		i++;
 	}
-}
-
-void	def_struct_table(t_table *table, int argc, char **argv)
-{
-	table->n_phil = ft_atoi(argv[1]);
-	table->time_before_death = ft_atoi(argv[2]);
-	table->time_for_eat = ft_atoi(argv[3]);
-	table->time_for_sleep = ft_atoi(argv[4]);
-	table->startime = taketime();
-	table->is_dead = 0;
-	table->enough_meal = 0;
-	if (argc == 6)
-		table->eat_counter = ft_atoi(argv[5]);
-	else
-		table->eat_counter = -1;
-	pthread_mutex_init(&table->dead_checker, NULL);
-	pthread_mutex_init(&table->meal_checker, NULL);
-	pthread_mutex_init(&table->printf, NULL);
-	init_forks(table);
-	def_struct_philo(table);
 }

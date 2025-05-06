@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 18:16:06 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/04/29 18:38:20 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:46:05 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	philos_init(t_table *table)
 	i = 0;
 	while (i < table->n_phil)
 	{
-		pthread_create(&table->phil[i].thread, NULL, &philo_rout,
+		pthread_create(&table->phil[i].thread, NULL, &philo_routine,
 			(void *)&table->phil[i]);
 		i++;
 	}

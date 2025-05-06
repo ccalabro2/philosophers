@@ -1,31 +1,26 @@
 NAME = philo
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
 
-SRCS = my_atois_and_checks.c monitor.c take_time.c philo_routine_and_check.c init_structs.c init_forks.c main.c \
-		thread_init.c destroy_forks.c
+SRCS = $(wildcard *.c) \
+		$(wildcard ./philo/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
-CC = cc
+.PHONY: all clean fclean re
 
-RM = rm -rf
-
-CFLAGS = -Wall -Werror -Wextra -g
-
-.c.o:
-				${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+all: $(NAME)
 
 $(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-				$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
-
-all: 	$(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-				$(RM) $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-				$(RM) $(NAME)
+	rm -f $(NAME)
 
-re:		fclean all
-
-.PHONY: all clean fclean re
+re: fclean all
